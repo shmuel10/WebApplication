@@ -7,6 +7,7 @@ app.use(express.json());
 app.get('/', function(req,res){
   res.render('index');
 });
+//for
 
 app.post('/login',function(req,res) {
   let usersArr = require("./users.json");
