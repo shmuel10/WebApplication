@@ -8,7 +8,7 @@ app.get('/', function(req,res){
   res.render('index');
 });
 
-//for simcha
+//for shmuel
 app.post('/login',function(req,res) {
   let usersArr = require("./users.json");
   console.log(usersArr);
