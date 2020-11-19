@@ -1,0 +1,14 @@
+{
+    "users" : {
+        "Simcha@gmail.com" : {
+           "password" : "1234" },
+        "Shmuel@gmail.com" : {
+            "password" : "1234"},
+        "Moshe@gmail.com" : {
+            "password" :"1234"},
+        "Ella@gmail.com"  : {
+            "password" : "1111"},
+        "Reuma@gmail.com" : {
+            "password" :"2222"}
+        }
+}

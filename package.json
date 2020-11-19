@@ -1,0 +1,24 @@
+{
+  "name": "ex3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shmuel10/WebApplication.git"
+  },
+  "author": "Simcha Podolsky,Shmuel Vazana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shmuel10/WebApplication/issues"
+  },
+  "homepage": "https://github.com/shmuel10/WebApplication#readme",
+  "dependencies": {
+    "ejs": "^2.5.7",
+    "express": "^4.17.1"
+  }
+}
