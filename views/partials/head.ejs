@@ -163,15 +163,15 @@
         body: JSON.stringify(data),
       });
       let detailes = await res.json();
-      if (detailes.msg === 'UserExist') {
-        console.log(detailes.msg);
+      let status = await res.status;
+      if (status === 200) {
         document.getElementById("loginFormDiv").style.display = "none";
         document.getElementById("loginForm").reset();
-        console.log("clear");
         document.getElementById("notLoggedIn").style.display = "none";
         document.getElementById("loggedIn").style.display = "block";
         document.getElementById("helloUser").innerText = "Hello " + userMail;
-
+      } else if(status === 401){
+        alert(detailes.msg)
       }
       console.log(detailes);
     }
