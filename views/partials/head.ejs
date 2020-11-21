@@ -166,7 +166,7 @@
       let status = await res.status;
       if (status === 200) {
         console.log(window.location);
-        window.location.href =  '/?username=' + userMail;
+        window.location.href =  '/#username=' + userMail;
         document.getElementById("loginFormDiv").style.display = "none";
         document.getElementById("loginForm").reset();
         document.getElementById("notLoggedIn").style.display = "none";
