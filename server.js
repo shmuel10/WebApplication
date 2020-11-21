@@ -9,7 +9,6 @@ app.get('/', function (req, res) {
   console.log(req);
   let params = new URLSearchParams(req.url);
   console.log(params);
-
 });
 
 
