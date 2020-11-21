@@ -4,24 +4,28 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.json());
 
-app.get('/', function(req,res){
+app.get('/', function (req, res) {
   res.render('index');
+  console.log(req);
+  let params = new URLSearchParams(req.url);
+  console.log(params);
+
 });
 
 
-app.post('/login',function(req,res) {
+app.post('/login', function (req, res) {
   let usersArr = require("./data/users.json");
   console.log(usersArr);
-  let existUser = usersArr.find(existUser => existUser.email === req.body.email );
-  if(existUser){
-    if(existUser.password === req.body.password){
-      res.status(200).send({msg : "UserExist"});
-    }else{
-      res.status(401).send({msg:"Wrong password"});
+  let existUser = usersArr.find(existUser => existUser.email === req.body.email);
+  if (existUser) {
+    if (existUser.password === req.body.password) {
+      res.status(200).send({ msg: "UserExist" });
+    } else {
+      res.status(401).send({ msg: "Wrong password" });
     }
-  }else{
-    res.status(401).send({msg : "User does not exist"});
+  } else {
+    res.status(401).send({ msg: "User does not exist" });
   }
 });
 
-app.listen(8080, function () {console.log('Example app listening on port 8080!')});
+app.listen(8080, function () { console.log('Example app listening on port 8080!') });

@@ -165,12 +165,14 @@
       let detailes = await res.json();
       let status = await res.status;
       if (status === 200) {
+        console.log(window.location);
+        window.location.href =  '/?username=' + userMail;
         document.getElementById("loginFormDiv").style.display = "none";
         document.getElementById("loginForm").reset();
         document.getElementById("notLoggedIn").style.display = "none";
         document.getElementById("loggedIn").style.display = "block";
         document.getElementById("helloUser").innerText = "Hello " + userMail;
-      } else if(status === 401){
+      } else if (status === 401) {
         alert(detailes.msg)
       }
       console.log(detailes);
