@@ -171,6 +171,7 @@
         document.getElementById("loginForm").reset();
         document.getElementById("notLoggedIn").style.display = "none";
         document.getElementById("loggedIn").style.display = "block";
+        
         document.getElementById("helloUser").innerText = "Hello " + userMail;
       } else if (status === 401) {
         alert(detailes.msg)
