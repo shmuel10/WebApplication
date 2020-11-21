@@ -8,9 +8,9 @@ app.get('/', function(req,res){
   res.render('index');
 });
 
-//for shmuel
+
 app.post('/login',function(req,res) {
-  let usersArr = require("./users.json");
+  let usersArr = require("./data/users.json");
   console.log(usersArr);
   let existUser = usersArr.find(existUser => existUser.email === req.body.email );
   if(existUser){
