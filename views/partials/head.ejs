@@ -163,11 +163,20 @@
       let status = await res.status;
       if (status === 200) {
         console.log(window.location);
+<<<<<<< HEAD
         window.location.href = '/#username=' + userMail;
+=======
+        var newurl = window.location.pathname + '?username=' + userMail;
+        window.history.pushState({ path: newurl }, '', newurl);
+>>>>>>> e2a4a82b3c3500fd921e2200c671188a6cf4658e
         document.getElementById("loginFormDiv").style.display = "none";
         document.getElementById("loginForm").reset();
         document.getElementById("notLoggedIn").style.display = "none";
         document.getElementById("loggedIn").style.display = "block";
+<<<<<<< HEAD
+=======
+
+>>>>>>> e2a4a82b3c3500fd921e2200c671188a6cf4658e
         document.getElementById("helloUser").innerText = "Hello " + userMail;
       } else if (status === 401) {
         alert(detailes.msg)
@@ -182,8 +191,14 @@
   }
 
   function logout() {
+    var newurl = window.location.pathname;
+    window.history.pushState({ path: newurl }, '', newurl);
     document.getElementById("notLoggedIn").style.display = "block";
     document.getElementById("loggedIn").style.display = "none";
     document.getElementById("helloUser").innerText = "";
+  }
+
+  function refresh(){
+    
   }
 </script>
