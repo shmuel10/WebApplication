@@ -6,10 +6,9 @@ app.use(express.json());
 
 app.get('/', function (req, res) {
   res.render('index');
-  //console.log(req);
-  //let params = new URLSearchParams(req.url);
-  //console.log(params);
-  //console.log(params.get(username));
+  console.log(req);
+  let params = new URLSearchParams(req.query);
+  console.log(params.get("username"));
 });
 
 

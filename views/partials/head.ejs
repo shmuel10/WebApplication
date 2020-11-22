@@ -166,12 +166,13 @@
       let status = await res.status;
       if (status === 200) {
         console.log(window.location);
-        window.location.href =  '/#username=' + userMail;
+        var newurl = window.location.pathname + '?username=' + userMail;
+        window.history.pushState({ path: newurl }, '', newurl);
         document.getElementById("loginFormDiv").style.display = "none";
         document.getElementById("loginForm").reset();
         document.getElementById("notLoggedIn").style.display = "none";
         document.getElementById("loggedIn").style.display = "block";
-        
+
         document.getElementById("helloUser").innerText = "Hello " + userMail;
       } else if (status === 401) {
         alert(detailes.msg)
@@ -186,8 +187,14 @@
   }
 
   function logout() {
+    var newurl = window.location.pathname;
+    window.history.pushState({ path: newurl }, '', newurl);
     document.getElementById("notLoggedIn").style.display = "block";
     document.getElementById("loggedIn").style.display = "none";
     document.getElementById("helloUser").innerText = "";
+  }
+
+  function refresh(){
+    
   }
 </script>
