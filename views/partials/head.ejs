@@ -110,8 +110,6 @@
   }
 </style>
 <script>
-
-
   function openCloseForm(formName) {
     var signupForm = document.getElementById("signupFormDiv");
     var loginForm = document.getElementById("loginFormDiv");
@@ -149,7 +147,6 @@
   async function login() {
     try {
       console.log("Enter login func");
-
       let userMail = document.getElementById("email").value;
       let userPassword = document.getElementById("psw").value;
       let data = { "email": userMail, "password": userPassword };
@@ -166,12 +163,11 @@
       let status = await res.status;
       if (status === 200) {
         console.log(window.location);
-        window.location.href =  '/#username=' + userMail;
+        window.location.href = '/#username=' + userMail;
         document.getElementById("loginFormDiv").style.display = "none";
         document.getElementById("loginForm").reset();
         document.getElementById("notLoggedIn").style.display = "none";
         document.getElementById("loggedIn").style.display = "block";
-        
         document.getElementById("helloUser").innerText = "Hello " + userMail;
       } else if (status === 401) {
         alert(detailes.msg)
