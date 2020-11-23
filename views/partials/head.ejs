@@ -113,24 +113,36 @@
 <script>
   $(document).ready(function () {
 
-    $(window).on("load",async function() {
+    $(window).on("load", async function () {
+      //let newUser = JSON.parse(user);
+      if (user) {
+        $('#loginFormDiv').css("display", "none");
+        $('#loginForm').trigger('reset');
+        $('#notLoggedIn').css("display", "none");
+        $('#loggedIn').css("display", "block");
+        $('#helloUser').html("Hello " + user.name);
+      }
+      console.log('user: ' + user);
+
+    });
+
+    $('#header').on("load", async function () {
       let res = await fetch('/', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-        });
-       console.log(res.he);
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      });
     });
 
     $('#root').mouseup(function (event) {
-        let notLoggedIn = $('#notLoggedIn');
-        let loginForm = $('#loginFormDiv');
-        if(!notLoggedIn.has(event.target).length > 0){
-            if(!loginForm.has(event.target).length > 0){
-              loginForm.css("display","none");
-            }
+      let notLoggedIn = $('#notLoggedIn');
+      let loginForm = $('#loginFormDiv');
+      if (!notLoggedIn.has(event.target).length > 0) {
+        if (!loginForm.has(event.target).length > 0) {
+          loginForm.css("display", "none");
         }
+      }
     });
 
     $('#login').on('click', function () {

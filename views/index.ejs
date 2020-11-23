@@ -1,17 +1,26 @@
 <!DOCTYPE html>
 <html lang="he" id="root">
-	<head>
-    	<% include partials/head %>
-	</head>
-	<body>
-	    <header>
-	        <% include partials/header  %>
-	    </header>
-	    <main>
-	    	 <% include partials/main  %>
-	    </main>
-	    <footer>
-	        <% include partials/footer %>
-	    </footer>
-	</body>
+
+<head>
+	<script>
+		let user = "<%= JSON.stringify(user) %>";
+		if (user) {
+			console.log("user is: " + user);
+		}
+	</script>
+	<% include partials/head %>
+</head>
+
+<body>
+	<header id="header">
+		<% include partials/header  %>
+	</header>
+	<main>
+		<% include partials/main  %>
+	</main>
+	<footer>
+		<% include partials/footer %>
+	</footer>
+</body>
+
 </html>
