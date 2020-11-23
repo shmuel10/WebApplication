@@ -109,96 +109,87 @@
     opacity: 1;
   }
 </style>
+
 <script>
-  function openCloseForm(formName) {
-    var signupForm = document.getElementById("signupFormDiv");
-    var loginForm = document.getElementById("loginFormDiv");
-    if (formName === "signupFormDiv") {
-      console.log(signupForm);
-      if (signupForm.style.display == "block") {
-        signupForm.style.display = "none";
-      } else {
-        signupForm.style.display = "block";
-        loginForm.style.display = "none"
-      }
-    } else if (formName === "loginFormDiv") {
-      if (loginForm.style.display == "block") {
-        loginForm.style.display = "none";
-      } else {
-        loginForm.style.display = "block";
-        signupForm.style.display = "none"
-      }
-    }
-  }
+  $(document).ready(function () {
 
-  document.addEventListener('mouseup', function (e) {
-    var signupForm = document.getElementById("signupFormDiv");
-    var loginForm = document.getElementById("loginFormDiv");
-    if (!document.getElementById("notLoggedIn").contains(e.target)) {
-      if (!signupForm.contains(e.target)) {
-        signupForm.style.display = 'none';
-      }
-      if (!loginForm.contains(e.target)) {
-        loginForm.style.display = 'none';
-      }
-    }
-  });
+    $(window).on("load",async function() {
+      let res = await fetch('/', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        });
+       console.log(res.he);
+    });
 
-  async function login() {
-    try {
+    $('#root').mouseup(function (event) {
+        let notLoggedIn = $('#notLoggedIn');
+        let loginForm = $('#loginFormDiv');
+        if(!notLoggedIn.has(event.target).length > 0){
+            if(!loginForm.has(event.target).length > 0){
+              loginForm.css("display","none");
+            }
+        }
+    });
+
+    $('#login').on('click', function () {
+      let loginForm = $('#loginFormDiv');
+      if (loginForm.css("display") === "block") {
+        $('#loginFormDiv').css("display", "none");
+      } else {
+        $('#loginFormDiv').css("display", "block");
+      }
+    });
+
+    $('#logbtn').on('click', async function (event) {
       console.log("Enter login func");
-      let userMail = document.getElementById("email").value;
-      let userPassword = document.getElementById("psw").value;
+      let userMail = $('#email').val();
+      let userPassword = $('#psw').val();
       let data = { "email": userMail, "password": userPassword };
-      console.log(userMail + "\n" + userPassword);
-      console.log("innerlogin");
-      let res = await fetch('/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-      });
-      let detailes = await res.json();
-      let status = await res.status;
-      if (status === 200) {
-        console.log(window.location);
-<<<<<<< HEAD
-        window.location.href = '/#username=' + userMail;
-=======
-        var newurl = window.location.pathname + '?username=' + userMail;
-        window.history.pushState({ path: newurl }, '', newurl);
->>>>>>> e2a4a82b3c3500fd921e2200c671188a6cf4658e
-        document.getElementById("loginFormDiv").style.display = "none";
-        document.getElementById("loginForm").reset();
-        document.getElementById("notLoggedIn").style.display = "none";
-        document.getElementById("loggedIn").style.display = "block";
-<<<<<<< HEAD
-=======
-
->>>>>>> e2a4a82b3c3500fd921e2200c671188a6cf4658e
-        document.getElementById("helloUser").innerText = "Hello " + userMail;
-      } else if (status === 401) {
-        alert(detailes.msg)
+      try {
+        let res = await fetch('/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data),
+        });
+        let detailes = await res.json();
+        let status = await res.status;
+        if (status === 200) {
+          console.log(window.location);
+          var newurl = window.location.pathname + '?username=' + userMail;
+          window.history.pushState({ path: newurl }, '', newurl);
+          $('#loginFormDiv').css("display", "none");
+          $('#loginForm').trigger('reset');
+          $('#notLoggedIn').css("display", "none");
+          $('#loggedIn').css("display", "block");
+          $('#helloUser').html("Hello " + userMail);
+        } else if (status === 401) {
+          alert(detailes.msg)
+        }
+        console.log(detailes);
+      } catch (e) {
+        console.log(e);
+        console.log("Enter login catch");
       }
-      console.log(detailes);
-    }
+    });
 
-    catch (err) {
-      console.log(err);
-      console.log("Enter login catch");
-    }
-  }
+    $("#contactUs").on('click', function () {
+      $.ajax({
+        url: "simcha.ejs", success: function (result) {
+          $("#simcha").html(result);
+        }
+      });
+    });
 
-  function logout() {
-    var newurl = window.location.pathname;
-    window.history.pushState({ path: newurl }, '', newurl);
-    document.getElementById("notLoggedIn").style.display = "block";
-    document.getElementById("loggedIn").style.display = "none";
-    document.getElementById("helloUser").innerText = "";
-  }
-
-  function refresh(){
-    
-  }
+    $('#logOut').on('click', function () {
+      var newurl = window.location.pathname;
+      window.history.pushState({ path: newurl }, '', newurl);
+      $('#notLoggedIn').css("display", "block");
+      $('#loggedIn').css("display", "none");
+      $('#helloUser').innerText = "";
+    });
+  });
 </script>

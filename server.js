@@ -8,10 +8,13 @@ app.use(session({secret: 'dlkfjgdnbhlur4i5y38tuh',saveUninitialized: false,resav
 let usersArr = require("./data/users.json");
 
 app.get('/', function (req, res) {
-  res.render('index');
-  console.log(req);
-  let params = new URLSearchParams(req.query);
-  console.log(params.get("username"));
+  let params = new URLSearchParams(req.query);  
+  if(!params.get("username")){
+    console.log(params.get("username"));
+    res.render('index');
+  }else{
+    res.status(200).send();
+  }  
 });
 
 app.post('/login', function (req, res) {  
@@ -34,6 +37,5 @@ app.post('/login', function (req, res) {
     console.log("Already logged in");
   }
 });
-
 
 app.listen(8080, function () { console.log('Example app listening on port 8080!') });
