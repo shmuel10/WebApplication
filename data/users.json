@@ -1,22 +1,42 @@
 [
     {
-	"email" : "Simcha@gmail.com",
-	"password" : "1234"
-	},
-	{
-       "email" : "Shmuel@gmail.com",
-       "password" : "1234"
-	},
-	{
-       "email" : "Moshe@gmail.com",
-       "password" : "1234"
-	},
-	{
-       "email" : "Ella@gmail.com",
-       "password" : "1111"
-	},
+           "email": "Simcha@gmail.com",
+           "password": "1234",
+           "name": "Simcha",
+           "phone": "0556679804",
+           "type": "Admin",
+           "flag": "true"
+    },
     {
-		"email" : "Reuma@gmail.com",
-        "password" :"2222"
+           "email": "Shmuel@gmail.com",
+           "password": "1234",
+           "name": "Shmuel",
+           "phone": "0589804566",
+           "type": "client",
+           "flag": "true"
+    },
+    {
+           "email": "Moshe@gmail.com",
+           "password": "1234",
+           "name": "Moshe",
+           "phone": "0558046679",
+           "type": "officer",
+           "flag": "true"
+    },
+    {
+           "email": "Ella@gmail.com",
+           "password": "1111",
+           "name": "Ella",
+           "phone": "0566759804",
+           "type": "client",
+           "flag": "false"
+    },
+    {
+           "email": "Reuma@gmail.com",
+           "password": "2222",
+           "name": "Reuma",
+           "phone": "0558066794",
+           "type": "client",
+           "flag": "true"
     }
 ]

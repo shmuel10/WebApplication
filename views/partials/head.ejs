@@ -113,15 +113,28 @@
 <script>
   $(document).ready(function () {
 
-    $(window).on("load",async function() {
+    $(window).on("load", async function () {
+      //let newUser = JSON.parse(user);
+      if (user) {
+        $('#loginFormDiv').css("display", "none");
+        $('#loginForm').trigger('reset');
+        $('#notLoggedIn').css("display", "none");
+        $('#loggedIn').css("display", "block");
+        $('#helloUser').html("Hello " + user.name);
+      }
+      console.log('user: ' + user);
+
+    });
+
+    $('#header').on("load", async function () {
       let res = await fetch('/', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Accept: 'application/json'
-          },
-          responseType:'json'
-        });
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        responseType: 'json'
+      });
     });
 
     $('#root').mouseup(function (event) {
