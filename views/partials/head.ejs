@@ -112,18 +112,13 @@
 
 <script>
   $(document).ready(function () {
-
     $(window).on("load", async function () {
-      //let newUser = JSON.parse(user);
       if (user) {
-        $('#loginFormDiv').css("display", "none");
-        $('#loginForm').trigger('reset');
-        $('#notLoggedIn').css("display", "none");
-        $('#loggedIn').css("display", "block");
-        $('#helloUser').html("Hello " + user.name);
+        user = user.replace(/&#34;/g, '"');
+        user = JSON.parse(user);
+        setLoggedinScreen(user.type, user.name);
       }
       console.log('user: ' + user);
-
     });
 
     $('#header').on("load", async function () {
@@ -172,14 +167,12 @@
         let detailes = await res.json();
         let status = await res.status;
         if (status === 200) {
-          console.log(window.location);
-          var newurl = window.location.pathname + '?username=' + userMail;
+          console.log("abc");
+          let user = detailes.Myuser;
+          console.log("post user", user);
+          var newurl = window.location.pathname + '?user=' + user.email;
           window.history.pushState({ path: newurl }, '', newurl);
-          $('#loginFormDiv').css("display", "none");
-          $('#loginForm').trigger('reset');
-          $('#notLoggedIn').css("display", "none");
-          $('#loggedIn').css("display", "block");
-          $('#helloUser').html("Hello " + userMail);
+          setLoggedinScreen(user.type, user.name);
         } else if (status === 401) {
           alert(detailes.msg)
         }
@@ -204,6 +197,22 @@
       $('#notLoggedIn').css("display", "block");
       $('#loggedIn').css("display", "none");
       $('#helloUser').innerText = "";
+      $('#flowersCatalog').css("display", "none");
+      $('#manageUsers').css("display", "none");
+      $('#manageStores').css("display", "none");
     });
+
+    function setLoggedinScreen(type, name) {
+      $('#loginFormDiv').css("display", "none");
+      $('#loginForm').trigger('reset');
+      $('#notLoggedIn').css("display", "none");
+      $('#loggedIn').css("display", "block");
+      $('#helloUser').html("Hello " + name);
+      $('#flowersCatalog').css("display", "block");
+      if (type === "Admin" || type === "officer") {
+        $('#manageUsers').css("display", "block");
+        $('#manageStores').css("display", "block");
+      }
+    }
   });
 </script>
