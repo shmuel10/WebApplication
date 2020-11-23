@@ -114,16 +114,16 @@
   $(document).ready(function () {
 
     $(window).on("load", async function () {
-      //let newUser = JSON.parse(user);
       if (user) {
         $('#loginFormDiv').css("display", "none");
         $('#loginForm').trigger('reset');
         $('#notLoggedIn').css("display", "none");
         $('#loggedIn').css("display", "block");
-        $('#helloUser').html("Hello " + user.name);
+        let c = user.replace(/&#34;/g,'"');
+        let oo = JSON.parse(c);
+        $('#helloUser').html("Hello " + oo.name);
       }
       console.log('user: ' + user);
-
     });
 
     $('#header').on("load", async function () {

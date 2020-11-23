@@ -1,6 +1,8 @@
+const { json } = require('express');
 let express = require('express');
 let app = express();
 let session = require('express-session');
+const { use } = require('passport');
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.json());
@@ -10,28 +12,15 @@ console.log("arr: " + JSON.stringify(usersArr))
 
 app.get('/', function (req, res) {
   let params = new URLSearchParams(req.query);
-  let userName = params.get("username");
-  if (!userName) {
-    console.log("user name" + userName);
-    res.render('index');
+  //console.log('par ' + params + '\nusArr ' + usersArr);
+  let user = usersArr.find(existUser => existUser.email === params.get("username"));
+  console.log("server user: ", user);
+  if (!user) {
+    res.render('index', { "Myuser": user });
   } else {
-    let currentUser = usersArr.find(existUser => existUser.email === userName);
-    console.log("user" + currentUser);
-    res.render('index', { msg: "meny" });
-  }
-});
-
-app.post('/login', function (req, res) {
-  if (!req.session.existUser) {
-    let params = new URLSearchParams(req.query);
-    //console.log('par ' + params + '\nusArr ' + usersArr);
-    var user = usersArr.find(existUser => existUser.email === params.get("username"));
-    console.log("server user: " + user);
-    if (!user) {
-      res.render('index', { user });
-    } else {
-      res.render('index', { "user": user });
-    }
+    console.log("user is " + user);
+    let r = JSON.stringify(user);
+    res.render('index', { "Myuser": r });
   }
 });
 
