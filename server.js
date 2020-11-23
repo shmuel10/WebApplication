@@ -9,17 +9,19 @@ let usersArr = require("./data/users.json");
 
 app.get('/', function (req, res) {
   let params = new URLSearchParams(req.query);  
-  if(!params.get("username")){
-    console.log(params.get("username"));
+  let userName = params.get("username");
+  if(!userName){
+    console.log("user name" + userName);
     res.render('index');
   }else{
-    res.status(200).send();
+    let currentUser = usersArr.find(existUser => existUser.email === userName);
+    console.log("user" + currentUser);
+    res.render('index',{msg : "meny"});
   }  
 });
 
 app.post('/login', function (req, res) {  
   if(!req.session.existUser){   
-    console.log(usersArr);
     let existUser = usersArr.find(existUser => existUser.email === req.body.email);
     if (existUser) {
       if (existUser.password === req.body.password) {
