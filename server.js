@@ -8,6 +8,7 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(session({ secret: 'dlkfjgdnbhlur4i5y38tuh', saveUninitialized: false, resave: true }));
 let usersArr = require("./data/users.json");
+//let flowersArr = require("./data/floers.json");
 console.log("arr: " + JSON.stringify(usersArr))
 
 app.get('/', function (req, res) {
@@ -20,15 +21,18 @@ app.get('/', function (req, res) {
   } else {
     console.log("user is " + user);
     user = JSON.stringify(user);
+    let flowers = require("./data/flowers.json");
+
     res.render('index', { "Myuser": user });
   }
 });
 
 app.get('/flowers', function (req, res) {
-  let flowers = require("./data/floers.json");
+  let flowers = require("./data/flowers.json");
   console.log(flowers);
-  
-  res.render('index',{ flowersCatalog : flowers });
+  var html = res.render('partials/flowersTemp', {"flowersCatalog": flowers });
+  console.log("html ", html);
+  res.status(200).send(html);
 });
 
 app.post('/login', function (req, res) {

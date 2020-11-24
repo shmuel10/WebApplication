@@ -192,17 +192,26 @@
     });
 
     $('#flowersCatalog').on('click', function () {
+      // $.ajax({
+      //   url: "../flowers.ejs", success: function (result) {
+      //     console.log("res" + result);
+      //     $("#main").html(result);
+      //     $.get('/flowers',
+      //       function (data, textStatus, jqXHR) {
+      //         console.log("fff" + data);
+      //         //$('#main').html('flowers.ejs')
+      //       });
+      //   }
+      // })
+      $("flowersList").load("/flowers");
       $.ajax({
-        url: "../flowers.ejs", success: function (result) {
-          console.log("res" + result);
-          $("#main").html(result);
-          $.get('/flowers',
-            function (data, textStatus, jqXHR) {
-              console.log("fff" + data);
-              //$('#main').html('flowers.ejs')
-            });
+        type:"GET",
+        url:"/flowers",
+        success:function(res){
+          console.log("res: ", res);
+          $("#flowersList").html(res);
         }
-      })
+      });
     });
 
     $('#logOut').on('click', function () {
