@@ -1,14 +1,81 @@
-<% for(var i=0; i < flowersCatalog.length; i++) { %>
-<div class="card">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        .card {
+            border: 2px solid lightgray;
+            border-radius: 25px;
+            width: 250px;
+            text-align: center;
+            font-family: arial;
+            margin-right: 5px;
+        }
 
-    <h3><%= flowersCatalog[i].name %></h3>
+        .title {
+            color: grey;
+            font-size: 18px;
+        }
 
-    <h5>שנת לימודים: <%= flowersCatalog[i].picture %></h5>
-    <div style="margin: 24px 0;">
-        <a href="#" class="social"><i class="fa fa-dribbble"></i></a>
-        <a href="#" class="social"><i class="fa fa-twitter"></i></a>
-        <a href="#" class="social"><i class="fa fa-linkedin"></i></a>
-        <a href="#" class="social"><i class="fa fa-facebook"></i></a>
+        button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .social {
+            text-decoration: none;
+            font-size: 22px;
+            color: black;
+        }
+
+        button:hover,
+        a:hover {
+            opacity: 0.7;
+        }
+
+        h5 {
+            color: red;
+        }
+
+        .grid {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .round_corner {
+  			border-radius: 20%;
+		}
+    </style>
+</head>
+<header>
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1>Our flowers</h1>
+            <p>Our flowers is best flowers in the world! <br> We are thinking and coding! </p>
+        </div>
+    </section>
+</header>
+
+<body>
+    <div class="grid">
+        <% flowersCatalog.forEach(function(flower) { %>
+        <div class="card" style="width: 18rem;">
+            <div style="height: 80px;">
+                <img src="<%= flower.picture %>" alt="..." class="round_corner"  width="100%" height="100%">
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><%= flower.name %></h5>
+                <a href="#" class="btn btn-primary">Order</a>
+            </div>
+        </div>
+        <% }) %>
     </div>
-</div>
-<% } %>
+</body>

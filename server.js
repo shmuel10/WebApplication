@@ -21,7 +21,6 @@ app.get('/', function (req, res) {
     console.log("user is " + user);
     user = JSON.stringify(user);
     let flowers = require("./data/flowers.json");
-
     res.render('index', { "Myuser": user });
   }
 });
