@@ -202,12 +202,15 @@
         }
     </style>
     <script>
+
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
-        });
-        $('#cl').on('click', function () {
-            console.log('#name').text();
-           //alert(typeof($(this).closest('tr')));
+            $(".settings").on('click', function () {
+                var $item = $(this).closest("tr")
+                    .find(".name")
+                    .text();
+                alert($item);
+            });
         });
     </script>
 </head>
@@ -239,11 +242,11 @@
         <% for(var i=0; i < users.length; i++) { %>
         <tr id="cl">
             <td><%= i+1 %></td>
-            <td id="name"><%= users[i].name %></td>
+            <td id="name" class="name"><%= users[i].name %></td>
             <td><%= users[i].city %></td>
             <td><%= users[i].type %></td>
             <% if(users[i].flag){ %>
-            <td><span class="status text-success">&bull;</span>Active </td>
+            <td><span class="status text-success">&bull;</span>Active</td>
             <td>
                 <a href="#users" class="settings" title="Settings" data-toggle="tooltip"><i
                         class="material-icons">&#xE8B8;</i></a>
