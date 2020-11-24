@@ -8,7 +8,6 @@ app.use(express.static('public'));
 app.use(express.json());
 app.use(session({ secret: 'dlkfjgdnbhlur4i5y38tuh', saveUninitialized: false, resave: true }));
 let usersArr = require("./data/users.json");
-//let flowersArr = require("./data/floers.json");
 console.log("arr: " + JSON.stringify(usersArr))
 
 app.get('/', function (req, res) {
@@ -30,9 +29,17 @@ app.get('/', function (req, res) {
 app.get('/flowers', function (req, res) {
   let flowers = require("./data/flowers.json");
   console.log(flowers);
-  var html = res.render('partials/flowersTemp', {"flowersCatalog": flowers });
-  console.log("html ", html);
-  res.status(200).send(html);
+  res.render('partials/flowersTemp', {"flowersCatalog": flowers });
+});
+
+app.get('/stores', function (req, res) {
+  let stores = require("./data/stores.json");
+  console.log(stores);
+  res.render('partials/storesTemp', {"stores": stores });
+});
+
+app.get('/users', function (req, res) {
+  res.render('partials/usersTemp', {"users": usersArr });
 });
 
 app.post('/login', function (req, res) {

@@ -113,6 +113,11 @@
   $(document).ready(function () {
 
     $(window).on("load", async function () {
+      $.ajax({
+        url: "aboutUs.ejs", success: function (result) {
+          $("#main").html(result);
+        }
+      });
       if (user) {
         user = user.replace(/&#34;/g, '"');
         user = JSON.parse(user);
@@ -183,33 +188,51 @@
       }
     });
 
+    $('#aboutUs').on('click', function () {
+      $.ajax({
+        url: "aboutUs.ejs", success: function (result) {
+          $("#main").html(result);
+        }
+      });
+    });
+
     $('#contactUs').on('click', function () {
       $.ajax({
         url: "simcha.ejs", success: function (result) {
-          $("#simcha").html(result);
+          $("#main").html(result);
         }
       });
     });
 
     $('#flowersCatalog').on('click', function () {
-      // $.ajax({
-      //   url: "../flowers.ejs", success: function (result) {
-      //     console.log("res" + result);
-      //     $("#main").html(result);
-      //     $.get('/flowers',
-      //       function (data, textStatus, jqXHR) {
-      //         console.log("fff" + data);
-      //         //$('#main').html('flowers.ejs')
-      //       });
-      //   }
-      // })
-      $("flowersList").load("/flowers");
       $.ajax({
         type:"GET",
         url:"/flowers",
         success:function(res){
           console.log("res: ", res);
-          $("#flowersList").html(res);
+          $("#main").html(res);
+        }
+      });
+    });
+
+    $('#manageStores').on('click', function () {
+      $.ajax({
+        type:"GET",
+        url:"/stores",
+        success:function(res){
+          console.log("res: ", res);
+          $("#main").html(res);
+        }
+      });
+    });
+
+    $('#manageUsers').on('click', function () {
+      $.ajax({
+        type:"GET",
+        url:"/users",
+        success:function(res){
+          console.log("res: ", res);
+          $("#main").html(res);
         }
       });
     });
