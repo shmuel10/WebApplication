@@ -1,42 +1,47 @@
 [
     {
-           "email": "Simcha@gmail.com",
-           "password": "1234",
-           "name": "Simcha",
-           "phone": "0556679804",
-           "type": "Admin",
-           "flag": "true"
+        "email": "Simcha@gmail.com",
+        "password": "1234",
+        "name": "Simcha",
+        "phone": "0556679804",
+        "type": "Admin",
+        "city": "Jafo",
+        "flag": true
     },
     {
-           "email": "Shmuel@gmail.com",
-           "password": "1234",
-           "name": "Shmuel",
-           "phone": "0589804566",
-           "type": "client",
-           "flag": "true"
+        "email": "Shmuel@gmail.com",
+        "password": "1234",
+        "name": "Shmuel",
+        "phone": "0589804566",
+        "type": "client",
+        "city": "Netanya",
+        "flag": true
     },
     {
-           "email": "Moshe@gmail.com",
-           "password": "1234",
-           "name": "Moshe",
-           "phone": "0558046679",
-           "type": "officer",
-           "flag": "true"
+        "email": "Moshe@gmail.com",
+        "password": "1234",
+        "name": "Moshe",
+        "phone": "0558046679",
+        "type": "officer",
+        "city": "Elad",
+        "flag": true
     },
     {
-           "email": "Ella@gmail.com",
-           "password": "1111",
-           "name": "Ella",
-           "phone": "0566759804",
-           "type": "client",
-           "flag": "false"
+        "email": "Ella@gmail.com",
+        "password": "1111",
+        "name": "Ella",
+        "phone": "0566759804",
+        "type": "client",
+        "city": "Bet Shemesh",
+        "flag": false
     },
     {
-           "email": "Reuma@gmail.com",
-           "password": "2222",
-           "name": "Reuma",
-           "phone": "0558066794",
-           "type": "client",
-           "flag": "true"
+        "email": "Reuma@gmail.com",
+        "password": "2222",
+        "name": "Reuma",
+        "phone": "0558066794",
+        "type": "client",
+        "city": "Charan",
+        "flag": true
     }
 ]

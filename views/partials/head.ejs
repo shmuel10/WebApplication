@@ -111,7 +111,6 @@
 
 <script>
   $(document).ready(function () {
-
     $(window).on("load", async function () {
       $.ajax({
         url: "aboutUs.ejs", success: function (result) {
@@ -286,6 +285,7 @@
       $('#flowersCatalog').css("display", "none");
       $('#manageUsers').css("display", "none");
       $('#manageStores').css("display", "none");
+      loadAbout();
     });
 
     function setLoggedinScreen(type, name) {
