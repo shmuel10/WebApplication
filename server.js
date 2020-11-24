@@ -24,6 +24,13 @@ app.get('/', function (req, res) {
   }
 });
 
+app.get('/flowers', function (req, res) {
+  let flowers = require("./data/floers.json");
+  console.log(flowers);
+  
+  res.render('index',{ flowersCatalog : flowers });
+});
+
 app.post('/login', function (req, res) {
   if (!req.session.existUser) {
     console.log(usersArr);
@@ -44,5 +51,4 @@ app.post('/login', function (req, res) {
     console.log("Already logged in");
   }
 });
-
 app.listen(8080, function () { console.log('Example app listening on port 8080!') });

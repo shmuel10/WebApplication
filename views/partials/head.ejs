@@ -5,7 +5,6 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
 <style>
   /* Remove the navbar's default margin-bottom and rounded borders */
   .navbar {
@@ -112,6 +111,7 @@
 
 <script>
   $(document).ready(function () {
+
     $(window).on("load", async function () {
       if (user) {
         user = user.replace(/&#34;/g, '"');
@@ -183,12 +183,26 @@
       }
     });
 
-    $("#contactUs").on('click', function () {
+    $('#contactUs').on('click', function () {
       $.ajax({
         url: "simcha.ejs", success: function (result) {
           $("#simcha").html(result);
         }
       });
+    });
+
+    $('#flowersCatalog').on('click', function () {
+      $.ajax({
+        url: "../flowers.ejs", success: function (result) {
+          console.log("res" + result);
+          $("#main").html(result);
+          $.get('/flowers',
+            function (data, textStatus, jqXHR) {
+              console.log("fff" + data);
+              //$('#main').html('flowers.ejs')
+            });
+        }
+      })
     });
 
     $('#logOut').on('click', function () {
