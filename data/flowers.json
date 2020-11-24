@@ -1,22 +1,92 @@
 [
     {
+        "id": "1",
         "name": "Yasmin",
-        "picture": "1234"
+        "picture": "images/1.jpg"
     },
     {
+        "id": "2",
         "name": "Savion",
-        "picture": "1234"
+        "picture": "images/2.jpg"
     },
     {
+        "id": "3",
         "name": "Amonon & Tamar",
-        "picture": "1234"
+        "picture": "images/3.jpg"
     },
     {
+        "id": "4",
         "name": "Hadas",
-        "picture": "1234"
+        "picture": "images/4.jpg"
     },
     {
+        "id": "5",
         "name": "Narkis",
-        "picture": "1234"
+        "picture": "images/5.jpg"
+    },
+    {
+        "id": "6",
+        "name": "Lily",
+        "picture": "images/6.jpg"
+    },
+    {
+        "id": "7",
+        "name": "Tulip",
+        "picture": "images/7.jpg"
+    },
+    {
+        "id": "8",
+        "name": "Orchid",
+        "picture": "images/8.jpg"
+    },
+    {
+        "id": "9",
+        "name": "Narkis",
+        "picture": "images/9.jpg"
+    },
+    {
+        "id": "10",
+        "name": "Carnation",
+        "picture": "images/10.jpg"
+    },
+    {
+        "id": "11",
+        "name": "Freesia",
+        "picture": "images/11.jpg"
+    },
+    {
+        "id": "12",
+        "name": "Hyacinth",
+        "picture": "images/12.jpg"
+    },
+    {
+        "id": "5",
+        "name": "Peruvian Lily",
+        "picture": "images/13.jpg"
+    },
+    {
+        "id": "13",
+        "name": "Chrysanthemum",
+        "picture": "images/14.jpg"
+    },
+    {
+        "id": "14",
+        "name": "Gladiolus",
+        "picture": "images/14.jpg"
+    },
+    {
+        "id": "15",
+        "name": "Anemone",
+        "picture": "images/15.jpg"
+    },
+    {
+        "id": "16",
+        "name": "Daffodil",
+        "picture": "images/16.jpg"
+    },
+    {
+        "id": "17",
+        "name": "Poppy",
+        "picture": "images/17.jpg"
     }
 ]
