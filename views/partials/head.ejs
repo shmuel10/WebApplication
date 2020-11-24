@@ -123,6 +123,26 @@
         user = JSON.parse(user);
         setLoggedinScreen(user.type, user.name);
       }
+      console.log("href: ", window.location.hash);
+      switch (window.location.hash) {
+        case '#contact':
+          loadContact();
+          break;
+        case '#about':
+          loadAbout();
+          break;
+        case '#users':
+          loadUsers();
+          break;
+        case '#stores':
+          loadStores();
+          break;
+        case '#catalog':
+          loadCatalog();
+          break;
+        default:
+          break;
+      }
       console.log('user: ' + user);
     });
 
@@ -189,53 +209,73 @@
     });
 
     $('#aboutUs').on('click', function () {
+      loadAbout();
+    });
+
+    function loadAbout() {
       $.ajax({
         url: "aboutUs.ejs", success: function (result) {
           $("#main").html(result);
         }
       });
-    });
+    }
 
     $('#contactUs').on('click', function () {
+      loadContact();
+    });
+
+    function loadContact() {
       $.ajax({
         url: "simcha.ejs", success: function (result) {
           $("#main").html(result);
         }
       });
-    });
+    }
 
     $('#flowersCatalog').on('click', function () {
+      loadCatalog();
+    });
+
+    function loadCatalog() {
       $.ajax({
-        type:"GET",
-        url:"/flowers",
-        success:function(res){
+        type: "GET",
+        url: "/flowers",
+        success: function (res) {
           console.log("res: ", res);
           $("#main").html(res);
         }
       });
-    });
+    }
 
     $('#manageStores').on('click', function () {
-      $.ajax({
-        type:"GET",
-        url:"/stores",
-        success:function(res){
-          console.log("res: ", res);
-          $("#main").html(res);
-        }
-      });
+      loadStores();
     });
 
-    $('#manageUsers').on('click', function () {
+    function loadStores() {
       $.ajax({
-        type:"GET",
-        url:"/users",
-        success:function(res){
+        type: "GET",
+        url: "/stores",
+        success: function (res) {
           console.log("res: ", res);
           $("#main").html(res);
         }
       });
+    }
+
+    $('#manageUsers').on('click', function () {
+      loadUsers();
     });
+
+    function loadUsers() {
+      $.ajax({
+        type: "GET",
+        url: "/users",
+        success: function (res) {
+          console.log("res: ", res);
+          $("#main").html(res);
+        }
+      });
+    }
 
     $('#logOut').on('click', function () {
       var newurl = window.location.pathname;
