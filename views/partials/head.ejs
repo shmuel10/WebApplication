@@ -296,15 +296,27 @@
       });
     }
 
-    $('#logOut').on('click', function () {
-      var newurl = window.location.pathname;
-      window.history.pushState({ path: newurl }, '', newurl);
-      $('#notLoggedIn').css("display", "block");
-      $('#loggedIn').css("display", "none");
-      $('#helloUser').innerText = "";
-      $('#flowersCatalog').css("display", "none");
-      $('#manageUsers').css("display", "none");
-      $('#manageStores').css("display", "none");
+    $('#logOut').on('click', async function (event) {
+      /* let mail = user.email;
+      let data = { "emailToOut": mail };
+      let res = await fetch('/logOut', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data),
+      });
+      let status = await res.status;
+      if (status === 200) { */
+        var newurl = window.location.pathname;
+        window.history.pushState({ path: newurl }, '', newurl);
+        $('#notLoggedIn').css("display", "block");
+        $('#loggedIn').css("display", "none");
+        $('#helloUser').innerText = "";
+        $('#flowersCatalog').css("display", "none");
+        $('#manageUsers').css("display", "none");
+        $('#manageStores').css("display", "none");
+     // }
       loadAbout();
     });
 
