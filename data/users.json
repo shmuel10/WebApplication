@@ -43,5 +43,23 @@
         "type": "client",
         "city": "Charan",
         "flag": true
+    },
+    {
+        "email": "Simchapodo@gmail.com",
+        "password": "12345",
+        "name": "שמחה פדולסקי",
+        "phone": "0556679804",
+        "type": "admin",
+        "city": "בית שמש",
+        "flag": true
+    },
+    {
+        "email": "Yaakov@gmail.com",
+        "password": "1235",
+        "name": "שמחה פדולסקי",
+        "phone": "0556679804",
+        "type": "client",
+        "city": "בית שמש",
+        "flag": true
     }
 ]

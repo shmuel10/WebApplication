@@ -1,7 +1,9 @@
 //const { json } = require('express');
+const { Console } = require('console');
 const { json } = require('express');
 let express = require('express');
 let app = express();
+const fs = require('fs');
 //let session = require('express-session');
 //const { use } = require('passport');
 app.set('view engine', 'ejs');
@@ -66,8 +68,8 @@ app.post('/login', function (req, res) {
     if (existUser.password === req.body.password) {
       let userMail = existUser.email;
       console.log("userMail " + existUser);
-     // connectedUsers.set(userMail, true);
-    
+      // connectedUsers.set(userMail, true);
+
       res.status(200).send({ msg: "UserExist", "Myuser": existUser });
     } else {
       res.status(401).send({ msg: "Wrong password" });
@@ -77,6 +79,23 @@ app.post('/login', function (req, res) {
   }
 });
 
+app.post('/newuser', function (req, res) {
+  console.log('newuser', req.body);
+  let users = require('./data/users.json');
+  if (!usersArr.find(existUser => existUser.email === req.body.email)) {
+    users.push(req.body)
+    fs.writeFile('./data/users.json', JSON.stringify(users), function () {
+      res.status(200).send();
+    });
+  } else {
+    res.status(401).send({ msg: "User alredy exist" });
+  }
+
+  //obj.newThing = JSON.parse(req.body);
+  //fs.writeFile('file.json', JSON.stringify(obj), function (err) {
+  //  console.log(err);
+  //});
+})
 /* app.post('/logOut', function (req, res) {
   let key = req.body.emailToOut;
   console.log("logOutMail" + key)
