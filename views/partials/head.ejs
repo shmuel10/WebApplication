@@ -179,10 +179,18 @@
     $('#root').mouseup(function (event) {
       let notLoggedIn = $('#notLoggedIn');
       let loginForm = $('#loginFormDiv');
+      let newUserForm = $('#signupFormDiv')
+      let editUserForm = $('#editFormDiv')
       if (!notLoggedIn.has(event.target).length > 0) {
         if (!loginForm.has(event.target).length > 0) {
           loginForm.css("display", "none");
         }
+      }
+      if (!newUserForm.has(event.target).length > 0) {
+        newUserForm.css("display", "none");
+      }
+      if (!editUserForm.has(event.target).length > 0) {
+        editUserForm.css("display", "none");
       }
     });
 
@@ -284,9 +292,7 @@
     $('#manageUsers').on('click', function () {
       loadUsers();
     });
-
     function loadUsers() {
-      console.log(window.location.search + "/users");
       $.ajax({
         type: "GET",
         url: "/users" + window.location.search,
@@ -309,15 +315,15 @@
       });
       let status = await res.status;
       if (status === 200) { */
-        var newurl = window.location.pathname;
-        window.history.pushState({ path: newurl }, '', newurl);
-        $('#notLoggedIn').css("display", "block");
-        $('#loggedIn').css("display", "none");
-        $('#helloUser').innerText = "";
-        $('#flowersCatalog').css("display", "none");
-        $('#manageUsers').css("display", "none");
-        $('#manageStores').css("display", "none");
-     // }
+      var newurl = window.location.pathname;
+      window.history.pushState({ path: newurl }, '', newurl);
+      $('#notLoggedIn').css("display", "block");
+      $('#loggedIn').css("display", "none");
+      $('#helloUser').innerText = "";
+      $('#flowersCatalog').css("display", "none");
+      $('#manageUsers').css("display", "none");
+      $('#manageStores').css("display", "none");
+      // }
       loadAbout();
     });
 
@@ -328,8 +334,10 @@
       $('#loggedIn').css("display", "block");
       $('#helloUser').html("Hello " + name);
       $('#flowersCatalog').css("display", "block");
-      if (type === "Admin" || type === "officer") {
+      if (type === "Admin" || type === "Officer") {
         $('#manageUsers').css("display", "block");
+      }
+      if (type === "Admin") {
         $('#manageStores').css("display", "block");
       }
     }

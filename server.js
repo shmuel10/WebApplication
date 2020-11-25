@@ -9,17 +9,16 @@ const fs = require('fs');
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.json());
-//app.use(session({ secret: 'dlkfjgdnbhlur4i5y38tuh', saveUninitialized: false, resave: true }));
 let usersArr = require("./data/users.json");
-console.log("arr: " + JSON.stringify(usersArr))
+//app.use(session({ secret: 'dlkfjgdnbhlur4i5y38tuh', saveUninitialized: false, resave: true }));
 //let connectedUsers = new Map();
 
 
 app.get('/', function (req, res) {
+  delete require.cache[require.resolve('./data/users.json')];
   let usersArr = require("./data/users.json");
   console.log("arr: " + JSON.stringify(usersArr))
   let params = new URLSearchParams(req.query);
-  //console.log('par ' + params + '\nusArr ' + usersArr);
   let user = usersArr.find(existUser => existUser.email === params.get("user"));
   console.log("server user: ", user);
   if (!user) {
@@ -60,14 +59,22 @@ app.get('/stores', function (req, res) {
 
 app.get('/users', function (req, res) {
   console.log("quary ", req.quary);
+  delete require.cache[require.resolve('./data/users.json')];
   let usersArr = require("./data/users.json");
+  usersArr = usersArr.filter(user => user["flag"]);
   let params = new URLSearchParams(req.query);
   let user = usersArr.find(existUser => existUser.email === params.get("user"));
   let userType = user.type;
-  res.render('partials/usersTemp', { "users": usersArr, "userType" : userType });
+  if(userType === "Officer"){
+    usersArr = usersArr.filter(user => user["type"] === "Client");
+  }
+  console.log("user type: ", userType)
+  res.render('partials/usersTemp', { "users": usersArr, "userType": userType });
 });
 
 app.post('/login', function (req, res) {
+  delete require.cache[require.resolve('./data/users.json')];
+  let usersArr = require("./data/users.json");
   let existUser = usersArr.find(existUser => existUser.email === req.body.email);
   if (existUser) {
     if (existUser.password === req.body.password) {
@@ -86,21 +93,59 @@ app.post('/login', function (req, res) {
 
 app.post('/newuser', function (req, res) {
   console.log('newuser', req.body);
+  delete require.cache[require.resolve('./data/users.json')];
+  let usersArr = require("./data/users.json");
   let users = require('./data/users.json');
   if (!usersArr.find(existUser => existUser.email === req.body.email)) {
     users.push(req.body)
     fs.writeFile('./data/users.json', JSON.stringify(users), function () {
       res.status(200).send();
+      delete require.cache[require.resolve('./data/users.json')];
+      let usersArr = require("./data/users.json");
     });
   } else {
     res.status(401).send({ msg: "User alredy exist" });
   }
+});
 
-  //obj.newThing = JSON.parse(req.body);
-  //fs.writeFile('file.json', JSON.stringify(obj), function (err) {
-  //  console.log(err);
-  //});
-})
+app.post('/updateuser', function (req, res) {
+  console.log('updateuser ', req.body);
+  delete require.cache[require.resolve('./data/users.json')];
+  let usersArr = require("./data/users.json");
+  let users = require('./data/users.json');
+  let userToUpdate = usersArr.find(existUser => existUser.email === req.body.email);
+  let updatedUser = req.body;
+  users = users.filter(user => user["email"] != req.body.email);
+  console.log("userto: ", userToUpdate);
+  console.log("userup: ", updatedUser);
+  if (!(updatedUser.hasOwnProperty("password"))) {
+    updatedUser["password"] = userToUpdate.password;
+    updatedUser["type"] = userToUpdate.type;
+  }
+  users.push(updatedUser)
+  fs.writeFile('./data/users.json', JSON.stringify(users), function () {
+    res.status(200).send();
+    delete require.cache[require.resolve('./data/users.json')];
+    let usersArr = require("./data/users.json");
+  });
+});
+
+app.post('/deleteuser', function (req, res) {
+  console.log('deleteuser ', req.body);
+  delete require.cache[require.resolve('./data/users.json')];
+  let usersArr = require("./data/users.json");
+  let users = require('./data/users.json');
+  let userToDelete = usersArr.find(existUser => existUser.email === req.body.email);
+  users = users.filter(user => user["email"] != req.body.email);
+  console.log("userto: ", userToDelete);
+  userToDelete["flag"] = false;
+  users.push(userToDelete)
+  fs.writeFile('./data/users.json', JSON.stringify(users), function () {
+    res.status(200).send();
+    delete require.cache[require.resolve('./data/users.json')];
+    let usersArr = require("./data/users.json");
+  });
+});
 /* app.post('/logOut', function (req, res) {
   let key = req.body.emailToOut;
   console.log("logOutMail" + key)

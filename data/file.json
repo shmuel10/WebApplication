@@ -1,1 +1,65 @@
-[{"email":"","password":"","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"},{"email":"","password":"","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"},{"email":"","password":"","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"},{"email":"","password":"","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"},{"email":"","password":"","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"},{"email":"","password":"","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"},{"email":"","password":"","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"},{"email":"","password":"","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"},{"email":"Simchapodo@gmail.com","password":"sdv","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"},{"email":"Simchapodo@gmail.com","password":"sdv","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"},{"email":"","password":"","name":"","phone":"","type":"admin","city":""},{"email":"Simchapodo@gmail.com","password":"scas","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"},{"email":"","password":"","name":"","phone":"","type":"admin","city":""},{"email":"","password":"","name":"","phone":"","type":"admin","city":""},{"email":"Simchapodo@gmail.com","password":"asc","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"},{"email":"Simchapodo@gmail.com","password":"","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"},{"email":"Simchapodo@gmail.com","password":"1234","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"},{"email":"Simchapodo@gmail.com","password":"abc","name":"שמחה פדולסקי","phone":"0556679804","type":"admin","city":"בית שמש"}]
+[
+    {
+        "email": "Simcha@gmail.com",
+        "password": "1234",
+        "name": "Simcha",
+        "phone": "0556679804",
+        "type": "Admin",
+        "city": "Jafo",
+        "flag": true
+    },
+    {
+        "email": "Shmuel@gmail.com",
+        "password": "1234",
+        "name": "Shmuel",
+        "phone": "0589804566",
+        "type": "Client",
+        "city": "Netanya",
+        "flag": true
+    },
+    {
+        "email": "Moshe@gmail.com",
+        "password": "1234",
+        "name": "Moshe",
+        "phone": "0558046679",
+        "type": "Officer",
+        "city": "Elad",
+        "flag": true
+    },
+    {
+        "email": "Ella@gmail.com",
+        "password": "1111",
+        "name": "Ella",
+        "phone": "0566759804",
+        "type": "Client",
+        "city": "Bet Shemesh",
+        "flag": false
+    },
+    {
+        "email": "Reuma@gmail.com",
+        "password": "2222",
+        "name": "Reuma",
+        "phone": "0558066794",
+        "type": "Client",
+        "city": "Charan",
+        "flag": true
+    },
+    {
+        "email": "Simchapodo@gmail.com",
+        "password": "12345",
+        "name": "שמחה פדולסקי",
+        "phone": "0556679804",
+        "type": "Admin",
+        "city": "בית שמש",
+        "flag": true
+    },
+    {
+        "email": "Yaakov@gmail.com",
+        "password": "1235",
+        "name": "שמחה פדולסקי",
+        "phone": "0556679804",
+        "type": "Client",
+        "city": "בית שמש",
+        "flag": true
+    }
+]
