@@ -3,14 +3,15 @@ const { Console } = require('console');
 const { json } = require('express');
 let express = require('express');
 let app = express();
-const fs = require('fs');
+let fs = require('fs');
 //let session = require('express-session');
 //const { use } = require('passport');
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.json());
 let usersArr = require("./data/users.json");
-//app.use(session({ secret: 'dlkfjgdnbhlur4i5y38tuh', saveUninitialized: false, resave: true }));
+let storesArr = require("./data/stores.json");
+console.log("arr: " + JSON.stringify(usersArr))
 //let connectedUsers = new Map();
 
 
@@ -55,6 +56,14 @@ app.get('/stores', function (req, res) {
   let stores = require("./data/stores.json");
   console.log(stores);
   res.render('partials/storesTemp', { "stores": stores });
+});
+
+app.get('/contact', function (req, res) {
+  res.render('partials/ContactUs');
+});
+
+app.get('/about', function (req, res) {
+  res.render('partials/aboutUs');
 });
 
 app.get('/users', function (req, res) {
@@ -146,6 +155,24 @@ app.post('/deleteuser', function (req, res) {
     let usersArr = require("./data/users.json");
   });
 });
+
+app.post('/newstore', function (req, res) {
+  console.log('newstore', req.body);
+  let stores = require('./data/stores.json');
+  if (!storesArr.find(existStore => existStore.name === req.body.name)) {
+    stores.push(req.body)
+    fs.writeFile('./data/stores.json', JSON.stringify(stores), function () {
+      res.status(200).send();
+    });
+  } else {
+    res.status(401).send({ msg: "User alredy exist" });
+  }
+
+  //obj.newThing = JSON.parse(req.body);
+  //fs.writeFile('file.json', JSON.stringify(obj), function (err) {
+  //  console.log(err);
+  //});
+})
 /* app.post('/logOut', function (req, res) {
   let key = req.body.emailToOut;
   console.log("logOutMail" + key)
