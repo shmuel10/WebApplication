@@ -14,7 +14,7 @@
 
   /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
   .row.content {
-    height: 450px
+    height: 720px
   }
 
   /* Set gray background color and 100% height */
@@ -132,11 +132,7 @@
 <script>
   $(document).ready(function () {
     $(window).on("load", async function () {
-      $.ajax({
-        url: "aboutUs.ejs", success: function (result) {
-          $("#main").html(result);
-        }
-      });
+      loadAbout();
       if (user) {
         user = user.replace(/&#34;/g, '"');
         user = JSON.parse(user);
@@ -233,7 +229,9 @@
 
     function loadAbout() {
       $.ajax({
-        url: "aboutUs.ejs", success: function (result) {
+        type: "GET",
+        url: "/about",
+        success: function (result) {
           $("#main").html(result);
         }
       });
@@ -245,7 +243,9 @@
 
     function loadContact() {
       $.ajax({
-        url: "simcha.ejs", success: function (result) {
+        type: "GET",
+        url: "/contact",
+        success: function (result) {
           $("#main").html(result);
         }
       });
@@ -309,15 +309,15 @@
       });
       let status = await res.status;
       if (status === 200) { */
-        var newurl = window.location.pathname;
-        window.history.pushState({ path: newurl }, '', newurl);
-        $('#notLoggedIn').css("display", "block");
-        $('#loggedIn').css("display", "none");
-        $('#helloUser').innerText = "";
-        $('#flowersCatalog').css("display", "none");
-        $('#manageUsers').css("display", "none");
-        $('#manageStores').css("display", "none");
-     // }
+      var newurl = window.location.pathname;
+      window.history.pushState({ path: newurl }, '', newurl);
+      $('#notLoggedIn').css("display", "block");
+      $('#loggedIn').css("display", "none");
+      $('#helloUser').innerText = "";
+      $('#flowersCatalog').css("display", "none");
+      $('#manageUsers').css("display", "none");
+      $('#manageStores').css("display", "none");
+      // }
       loadAbout();
     });
 

@@ -19,5 +19,26 @@
         "name": "TelAvivFlowers",
         "phone": "038046679",
         "flag": "true"
+    },
+    {
+        "address": "Beit Shemesh",
+        "manager": "Simcha Podolsky",
+        "name": "Ella flowers",
+        "phone": "Simcha",
+        "flag": "true"
+    },
+    {
+        "address": "Beit Shemesh",
+        "manager": "Ella podolsky",
+        "name": "Ella&Simcha flowers",
+        "phone": "0657867463246",
+        "flag": "false"
+    },
+    {
+        "address": "",
+        "manager": "",
+        "name": "",
+        "phone": "",
+        "flag": "true"
     }
 ]
