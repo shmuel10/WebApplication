@@ -59,7 +59,12 @@ app.get('/stores', function (req, res) {
 });
 
 app.get('/users', function (req, res) {
-  res.render('partials/usersTemp', { "users": usersArr });
+  console.log("quary ", req.quary);
+  let usersArr = require("./data/users.json");
+  let params = new URLSearchParams(req.query);
+  let user = usersArr.find(existUser => existUser.email === params.get("user"));
+  let userType = user.type;
+  res.render('partials/usersTemp', { "users": usersArr, "userType" : userType });
 });
 
 app.post('/login', function (req, res) {

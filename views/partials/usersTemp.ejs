@@ -202,7 +202,7 @@
         }
     </style>
     <script>
-
+    //let type = "<%= userType %>"; 
         $(document).ready(function () {
             $('[data-toggle="tooltip"]').tooltip();
             $(".settings").on('click', function () {
@@ -262,14 +262,14 @@
 
             <label for="phone"><b>Phone Number</b></label>
             <input type="tel" placeholder="Enter Phone Number" id="phone" name="phone" required>
-
+            <% if(userType === "Admin") { %>
             <label for="type"><b>Type</b></label>
             <select placeholder="Enter Type" id="type" name="type" required>
                 <option value="admin">Admin</option>
                 <option value="officer">Officer</option>
                 <option value="client">Client</option>
             </select>
-
+            <% } %>
             <label for="city"><b>City</b></label>
             <input type="text" placeholder="Enter City" id="city" name="city" required>
         </div>
@@ -300,29 +300,29 @@
     </thead>
     <tbody>
         <% for(var i=0; i < users.length; i++) { %>
-        <tr id="cl">
-            <td><%= i+1 %></td>
-            <td id="name" class="name"><%= users[i].name %></td>
-            <td><%= users[i].city %></td>
-            <td><%= users[i].type %></td>
-            <% if(users[i].flag){ %>
-            <td><span class="status text-success">&bull;</span>Active</td>
-            <td>
-                <a href="#users" class="settings" title="Settings" data-toggle="tooltip"><i
-                        class="material-icons">&#xE8B8;</i></a>
-                <a href="#users" class="delete" title="Delete" data-toggle="tooltip"><i
-                        class="material-icons">&#xE5C9;</i></a>
-            </td>
-            <%} else{ %>
-            <td><span class="status text-danger">&bull;</span>Deleted</td>
-            <td>
-                <a href="#users" class="settings" title="Settings" data-toggle="tooltip"><i
-                        class="material-icons">&#xE8B8;</i></a>
-                <a href="#users" class="add" title="Add" data-toggle="tooltip"><i class="material-icons"> &#xe86c;
-                    </i></a>
-            </td>
-            <%} %>
-        </tr>
-        <% } %>
-    </tbody>
-</table>
+            <tr id="cl">
+                <td><%= i+1 %></td>
+                <td id="name" class="name"><%= users[i].name %></td>
+                <td><%= users[i].city %></td>
+                <td><%= users[i].type %></td>
+                <% if(users[i].flag){ %>
+                <td><span class="status text-success">&bull;</span>Active</td>
+                <td>
+                    <a href="#users" class="settings" title="Settings" data-toggle="tooltip"><i
+                            class="material-icons">&#xE8B8;</i></a>
+                    <a href="#users" class="delete" title="Delete" data-toggle="tooltip"><i
+                            class="material-icons">&#xE5C9;</i></a>
+                </td>
+                <%} else{ %>
+                <td><span class="status text-danger">&bull;</span>Deleted</td>
+                <td>
+                    <a href="#users" class="settings" title="Settings" data-toggle="tooltip"><i
+                            class="material-icons">&#xE8B8;</i></a>
+                    <a href="#users" class="add" title="Add" data-toggle="tooltip"><i class="material-icons"> &#xe86c;
+                        </i></a>
+                </td>
+                <%} %>
+            </tr>
+            <% } %>
+            </tbody>
+            </table>

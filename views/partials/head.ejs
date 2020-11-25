@@ -67,7 +67,7 @@
   }
 
   .new-user-form-popup {
-    display: block;
+    display: none;
     position: fixed;
     top: 120px;
     margin: auto;
@@ -286,9 +286,10 @@
     });
 
     function loadUsers() {
+      console.log(window.location.search + "/users");
       $.ajax({
         type: "GET",
-        url: "/users",
+        url: "/users" + window.location.search,
         success: function (res) {
           console.log("res: ", res);
           $("#main").html(res);
