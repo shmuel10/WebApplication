@@ -289,15 +289,14 @@
                 }
 
                 console.log(JSON.stringify(newUser));
-                $. fetch('/newuser', {
+                let res = fetch('/newuser', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(newUser)
+                    body: JSON.stringify(newUser),
                 });
                 $('#signupFormDiv').css("display", "none");
-
             });
             $('#editUserBtn').on('click', function () {
                 console.log("edit user btn");
