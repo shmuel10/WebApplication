@@ -66,6 +66,16 @@
     z-index: 9;
   }
 
+  .new-user-form-popup {
+    display: block;
+    position: fixed;
+    top: 120px;
+    margin: auto;
+
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }
+
   /* Add styles to the form container */
   .form-container {
     max-width: 300px;
@@ -73,10 +83,17 @@
     background-color: white;
   }
 
+  .new-user-form-container {
+    max-width: 800px;
+  }
+
   /* Full-width input fields */
   .form-container input[type=text],
-  .form-container input[type=password] {
-    width: 100%;
+  .form-container input[type=password],
+  .form-container input[type=tel],
+  .form-container select,
+  .form-container input[type=email] {
+    width: 95%;
     padding: 15px;
     margin: 5px 0 22px 0;
     border: none;
@@ -85,7 +102,10 @@
 
   /* When the inputs get focus, do something */
   .form-container input[type=text]:focus,
-  .form-container input[type=password]:focus {
+  .form-container input[type=password]:focus,
+  .form-container input[type=tel]:focus,
+  .form-container select:focus,
+  .form-container input[type=email]:focus {
     background-color: #ddd;
     outline: none;
   }

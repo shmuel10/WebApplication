@@ -211,18 +211,58 @@
                     .text();
                 alert($item);
             });
+            $('#addUser').on('click', function () {
+                let signupForm = $('#signupFormDiv');
+                if (signupForm.css("display") === "block") {
+                    $('#signupFormDiv').css("display", "none");
+                } else {
+                    $('#signupFormDiv').css("display", "block");
+                }
+            });
         });
     </script>
 </head>
 
+<div id="signupFormDiv" class="new-user-form-popup">
+    <form class="form-container new-user-form-container">
+        <h1>New User</h1>
+        <p>Please fill in this form to create an account.</p>
+        <div style="width:50%;float:left;">
 
+        <label for="email"><b>Email</b></label>
+        <input type="email" placeholder="Enter Email" name="email" required>
+
+        <label for="psw"><b>Password</b></label>
+        <input type="password" placeholder="Enter Password" name="psw" required>
+
+        <label for="name"><b>Name</b></label>
+        <input type="text" placeholder="Enter Name" name="name" required>
+        </div>
+        <div style="width:50%;float:left;">
+
+        <label for="phone"><b>Phone Number</b></label>
+        <input type="tel" placeholder="Enter Phone Number" name="phone" required>
+
+        <label for="type"><b>Type</b></label>
+        <select placeholder="Enter Type" name="type" required>
+            <option value="admin">Admin</option>
+            <option value="officer">Officer</option>
+            <option value="client">Client</option>
+          </select>
+
+        <label for="city"><b>City</b></label>
+        <input type="text" placeholder="Enter City" name="city" required>
+        </div>
+        <button type="button" class="btn">Sign Up</button>
+    </form>
+</div>
 <div class="table-title">
     <div class="row">
         <div class="col-sm-5">
             <h2>User <b>Management</b></h2>
         </div>
         <div class="col-sm-7">
-            <a href="#" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New
+            <a id="addUser" href="#users" class="btn btn-secondary"><i class="material-icons">&#xE147;</i> <span>Add New
                     User</span></a>
         </div>
     </div>

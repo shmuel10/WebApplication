@@ -7,10 +7,10 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 app.use(express.json());
 app.use(session({ secret: 'dlkfjgdnbhlur4i5y38tuh', saveUninitialized: false, resave: true }));
-let usersArr = require("./data/users.json");
-console.log("arr: " + JSON.stringify(usersArr))
 
 app.get('/', function (req, res) {
+  let usersArr = require("./data/users.json");
+  console.log("arr: " + JSON.stringify(usersArr))
   let params = new URLSearchParams(req.query);
   //console.log('par ' + params + '\nusArr ' + usersArr);
   let user = usersArr.find(existUser => existUser.email === params.get("user"));
@@ -20,7 +20,6 @@ app.get('/', function (req, res) {
   } else {
     console.log("user is " + user);
     user = JSON.stringify(user);
-    let flowers = require("./data/flowers.json");
     res.render('index', { "Myuser": user });
   }
 });
@@ -38,10 +37,12 @@ app.get('/stores', function (req, res) {
 });
 
 app.get('/users', function (req, res) {
+  let usersArr = require("./data/users.json");
   res.render('partials/usersTemp', {"users": usersArr });
 });
 
 app.post('/login', function (req, res) {
+  let usersArr = require("./data/users.json");
   if (!req.session.existUser) {
     console.log(usersArr);
     let existUser = usersArr.find(existUser => existUser.email === req.body.email);
