@@ -215,19 +215,17 @@
         let detailes = await res.json();
         let status = await res.status;
         if (status === 200) {
-          console.log("abc");
           let user = detailes.Myuser;
           console.log("post user", user);
           var newurl = window.location.pathname + '?user=' + user.email;
           window.history.pushState({ path: newurl }, '', newurl);
           setLoggedinScreen(user.type, user.name);
         } else if (status === 401) {
-          alert(detailes.msg)
+          alert("error");
         }
         console.log(detailes);
       } catch (e) {
-        console.log(e);
-        console.log("Enter login catch");
+
       }
     });
 
@@ -236,13 +234,7 @@
     });
 
     function loadAbout() {
-      $.ajax({
-        type: "GET",
-        url: "/about",
-        success: function (result) {
-          $("#main").html(result);
-        }
-      });
+      $("#main").load('/about');    
     }
 
     $('#contactUs').on('click', function () {
@@ -250,13 +242,7 @@
     });
 
     function loadContact() {
-      $.ajax({
-        type: "GET",
-        url: "/contact",
-        success: function (result) {
-          $("#main").html(result);
-        }
-      });
+      $("#main").load("/contact");
     }
 
     $('#flowersCatalog').on('click', function () {
@@ -264,14 +250,7 @@
     });
 
     function loadCatalog() {
-      $.ajax({
-        type: "GET",
-        url: "/flowers",
-        success: function (res) {
-          console.log("res: ", res);
-          $("#main").html(res);
-        }
-      });
+      $("#main").load("/flowers");
     }
 
     $('#manageStores').on('click', function () {
@@ -279,42 +258,17 @@
     });
 
     function loadStores() {
-      $.ajax({
-        type: "GET",
-        url: "/stores",
-        success: function (res) {
-          console.log("res: ", res);
-          $("#main").html(res);
-        }
-      });
+      $("#main").load("/stores");
     }
 
     $('#manageUsers').on('click', function () {
       loadUsers();
     });
     function loadUsers() {
-      $.ajax({
-        type: "GET",
-        url: "/users" + window.location.search,
-        success: function (res) {
-          console.log("res: ", res);
-          $("#main").html(res);
-        }
-      });
+      $("#main").load("/users" + window.location.search);
     }
 
     $('#logOut').on('click', async function (event) {
-      /* let mail = user.email;
-      let data = { "emailToOut": mail };
-      let res = await fetch('/logOut', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(data),
-      });
-      let status = await res.status;
-      if (status === 200) { */
       var newurl = window.location.pathname;
       window.history.pushState({ path: newurl }, '', newurl);
       $('#notLoggedIn').css("display", "block");
@@ -323,7 +277,6 @@
       $('#flowersCatalog').css("display", "none");
       $('#manageUsers').css("display", "none");
       $('#manageStores').css("display", "none");
-      // }
       loadAbout();
     });
 
