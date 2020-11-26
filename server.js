@@ -21,14 +21,20 @@ app.get('/', function (req, res) {
   console.log("arr: " + JSON.stringify(usersArr))
   let params = new URLSearchParams(req.query);
   let user = usersArr.find(existUser => existUser.email === params.get("user"));
+ 
   console.log("server user: ", user);
-  if (!user) {
+  setTimeout(function () {
+    user = JSON.stringify(user); 
+    res.render('index', { "Myuser": user });
+  }, 1000);
+   
+  /* if (!user) {
     res.render('index', { "Myuser": user });
   } else {
     console.log("user is " + user);
     user = JSON.stringify(user);
     res.render('index', { "Myuser": user });
-  }
+  } */
 });
 
 /* app.get('/', function (req, res) {
@@ -49,21 +55,29 @@ app.get('/', function (req, res) {
 app.get('/flowers', function (req, res) {
   let flowers = require("./data/flowers.json");
   console.log(flowers);
-  res.render('partials/flowersTemp', { "flowersCatalog": flowers });
+  setTimeout(function () {
+    res.render('partials/flowersTemp', { "flowersCatalog": flowers });
+  }, 1000)
 });
 
 app.get('/stores', function (req, res) {
   let stores = require("./data/stores.json");
   console.log(stores);
-  res.render('partials/storesTemp', { "stores": stores });
+  setTimeout(function () {
+    res.render('partials/storesTemp', { "stores": stores });
+  }, 1000)
 });
 
 app.get('/contact', function (req, res) {
-  res.render('partials/ContactUs');
+  setTimeout(function () {
+    res.render('partials/ContactUs');
+  }, 1000)
 });
 
 app.get('/about', function (req, res) {
-  res.render('partials/aboutUs');
+  setTimeout(function () {
+    res.render('partials/aboutUs');
+  }, 1000)
 });
 
 app.get('/users', function (req, res) {
@@ -74,11 +88,13 @@ app.get('/users', function (req, res) {
   let params = new URLSearchParams(req.query);
   let user = usersArr.find(existUser => existUser.email === params.get("user"));
   let userType = user.type;
-  if(userType === "Officer"){
+  if (userType === "Officer") {
     usersArr = usersArr.filter(user => user["type"] === "Client");
   }
   console.log("user type: ", userType)
-  res.render('partials/usersTemp', { "users": usersArr, "userType": userType });
+  setTimeout(function () {
+    res.render('partials/usersTemp', { "users": usersArr, "userType": userType });
+  }, 1000)
 });
 
 app.post('/login', function (req, res) {
@@ -90,13 +106,18 @@ app.post('/login', function (req, res) {
       let userMail = existUser.email;
       console.log("userMail " + existUser);
       // connectedUsers.set(userMail, true);
-
-      res.status(200).send({ msg: "UserExist", "Myuser": existUser });
+      setTimeout(function () {
+        res.status(200).send({ "Myuser": existUser });
+      }, 1000)
     } else {
-      res.status(401).send({ msg: "Wrong password" });
+      setTimeout(function () {
+        res.status(401).send();
+      }, 1000)
     }
   } else {
-    res.status(401).send({ msg: "User does not exist" });
+    setTimeout(function () {
+      res.status(401).send();
+    }, 1000)
   }
 });
 
@@ -108,12 +129,16 @@ app.post('/newuser', function (req, res) {
   if (!usersArr.find(existUser => existUser.email === req.body.email)) {
     users.push(req.body)
     fs.writeFile('./data/users.json', JSON.stringify(users), function () {
-      res.status(200).send();
+      setTimeout(function(){
+        res.status(200).send();
+      },1000) 
       delete require.cache[require.resolve('./data/users.json')];
       let usersArr = require("./data/users.json");
     });
   } else {
-    res.status(401).send({ msg: "User alredy exist" });
+    setTimeout(function(){
+      res.status(401).send();
+    },1000) 
   }
 });
 
@@ -133,7 +158,9 @@ app.post('/updateuser', function (req, res) {
   }
   users.push(updatedUser)
   fs.writeFile('./data/users.json', JSON.stringify(users), function () {
-    res.status(200).send();
+    setTimeout(function(){
+      res.status(200).send();
+    },1000) 
     delete require.cache[require.resolve('./data/users.json')];
     let usersArr = require("./data/users.json");
   });
@@ -150,7 +177,9 @@ app.post('/deleteuser', function (req, res) {
   userToDelete["flag"] = false;
   users.push(userToDelete)
   fs.writeFile('./data/users.json', JSON.stringify(users), function () {
-    res.status(200).send();
+    setTimeout(function(){
+      res.status(200).send();
+    },1000) 
     delete require.cache[require.resolve('./data/users.json')];
     let usersArr = require("./data/users.json");
   });
@@ -162,10 +191,14 @@ app.post('/newstore', function (req, res) {
   if (!storesArr.find(existStore => existStore.name === req.body.name)) {
     stores.push(req.body)
     fs.writeFile('./data/stores.json', JSON.stringify(stores), function () {
-      res.status(200).send();
+      setTimeout(function(){
+        res.status(200).send();
+      },1000) 
     });
   } else {
-    res.status(401).send({ msg: "User alredy exist" });
+    setTimeout(function(){
+      res.status(401).send();
+    },1000) 
   }
 
   //obj.newThing = JSON.parse(req.body);
