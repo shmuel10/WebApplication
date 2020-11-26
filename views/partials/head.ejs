@@ -587,6 +587,8 @@
           var newurl = window.location.pathname + '?user=' + user.email;
           window.history.pushState({ path: newurl }, '', newurl);
           setLoggedinScreen(user.type, user.name);
+          window.location.hash = "#catalog";
+          loadCatalog();
         } else if (status === 401) {
           alert("error");
         }
@@ -660,8 +662,6 @@
       if (type === "Admin") {
         $('#manageStores').css("display", "block");
       }
-      window.location.hash = "#catalog";
-      loadCatalog();
     }
   });
 </script>
